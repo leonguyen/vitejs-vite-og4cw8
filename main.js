@@ -1,5 +1,18 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import { setupCounter } from './counter.js'
+var request = new XMLHttpRequest();
+request.open('GET', 'https://scjmall.vn', true);
 
-document.querySelector('#app').innerHTML = 'a';
+request.onload = function() {
+  if (this.status >= 200 && this.status < 400) {
+    // Success!
+    document.getElementById('app').innerHTML = this.response;
+  } else {
+    // We reached our target server, but it returned an error
+    
+  }
+};
+
+request.onerror = function() {
+  // There was a connection error of some sort
+};
+
+request.send();
